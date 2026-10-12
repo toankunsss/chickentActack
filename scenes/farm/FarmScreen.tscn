@@ -1,0 +1,354 @@
+[gd_scene format=4 uid="uid://ctjr1es5o4nas"]
+
+[ext_resource type="PackedScene" uid="uid://v1r1sdryoxnj" path="res://scenes/farm/FarmMap.tscn" id="1_map"]
+[ext_resource type="Texture2D" path="res://assets/ui/egg-upgrade/egg-upgrade-close.svg" id="2_close_icon"]
+[ext_resource type="FontFile" path="res://assets/Hyper_Casual_UI/Fonts/Baloo2-ExtraBold.ttf" id="3_modal_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi1wb"]
+bg_color = Color(0.79155964, 0.82788044, 0.56809753, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.93075097, 0.77363616, 0.530547, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="progress_background"]
+bg_color = Color(0.8471, 0.8196, 0.7412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.14, 0.1, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="progress_fill"]
+bg_color = Color(0.2078, 0.7176, 0.9098, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="upgrade_button"]
+bg_color = Color(0.4627, 0.7882, 0.3098, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1373, 0.2078, 0.1373, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="shop_panel"]
+bg_color = Color(1, 0.9686, 0.8627, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.1529, 0.1176, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="ticker_panel"]
+bg_color = Color(1, 0.7, 0.22, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.14, 0.1, 0.08, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="FarmScreen" type="Control" unique_id=1939902542]
+editor_description = "Màn Chăn nuôi hoàn chỉnh. Mọi UI là node trực tiếp để kéo thả; chỉ scene trong MapSlot được thay khi đổi map."
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MapSlot" type="Node2D" parent="." unique_id=629492994]
+editor_description = "Khe chứa map hiện tại. Code có thể thay FarmMap bằng map khác mà không ảnh hưởng HUD."
+
+[node name="FarmMap" parent="MapSlot" unique_id=1615310020 instance=ExtResource("1_map")]
+
+[node name="FarmGround" parent="MapSlot/FarmMap" index="0" unique_id=1991809044]
+offset_left = 11.0
+offset_top = 239.0
+offset_right = 693.0
+offset_bottom = 974.0
+
+[node name="GroundTileLayer" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="0" unique_id=1615383137]
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAADAAkAAAAAAAAAAAACAAkAAAAAAAAAAAABAAkAAAAAAAAAAAAAAAkAAAAAAAAAAAA=")
+
+[node name="BushRound256x161" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="15" unique_id=1201480692]
+position = Vector2(297, 258)
+
+[node name="BushRound256x162" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="16" unique_id=1840886080]
+position = Vector2(431, 262)
+
+[node name="BushRound256x163" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="17" unique_id=1836523620]
+position = Vector2(671, 228)
+
+[node name="BushRound256x163" parent="MapSlot/FarmMap/Background/BushRound256x163" index="0" unique_id=1058256998]
+position = Vector2(16, 30)
+
+[node name="FenceHorizontal256x104" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="24" unique_id=510969304]
+position = Vector2(-23.666664, 291.5)
+
+[node name="FenceHorizontal256x105" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="25" unique_id=2034804079]
+position = Vector2(753.3334, 291.5)
+
+[node name="FenceHorizontal256x98" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="26" unique_id=889963231]
+position = Vector2(134.33334, 293.5)
+
+[node name="FenceHorizontal256x106" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="27" unique_id=612301645]
+position = Vector2(294.33334, 293.5)
+
+[node name="FenceHorizontal256x107" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="28" unique_id=1429786818]
+position = Vector2(452.33334, 293.5)
+
+[node name="FenceHorizontal256x108" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="29" unique_id=1387678673]
+position = Vector2(600.1666, 292.5)
+
+[node name="TreeRound192x224" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="30" unique_id=71885170]
+position = Vector2(546, 239)
+
+[node name="TreeRound192x225" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="31" unique_id=630334470]
+position = Vector2(505, 222)
+
+[node name="TreeRound192x226" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="32" unique_id=1134366914]
+position = Vector2(96, 226)
+
+[node name="TreeRound192x227" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="33" unique_id=1275032049]
+position = Vector2(35, 224)
+
+[node name="GrassTuft96x76" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="34" unique_id=104820697]
+position = Vector2(228, 212)
+
+[node name="GrassTuft96x77" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="35" unique_id=680225059]
+position = Vector2(244, 257)
+
+[node name="GrassTuft96x78" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="36" unique_id=1479280340]
+position = Vector2(275, 217)
+
+[node name="GrassTuft96x79" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="37" unique_id=1506468822]
+position = Vector2(374, 192)
+
+[node name="GrassTuft96x80" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="38" unique_id=2019948334]
+position = Vector2(209, 188)
+
+[node name="GrassTuft96x81" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="39" unique_id=2139864216]
+position = Vector2(251, 204)
+
+[node name="GrassTuft96x82" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="40" unique_id=1836830705]
+position = Vector2(293, 200)
+
+[node name="GrassTuft96x83" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="41" unique_id=1945109120]
+position = Vector2(275, 204)
+
+[node name="GrassTuft96x84" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="42" unique_id=595489166]
+position = Vector2(245, 236)
+
+[node name="GrassTuft96x85" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="43" unique_id=1971241524]
+position = Vector2(289.5, 183)
+
+[node name="GrassTuft96x86" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="44" unique_id=517162539]
+position = Vector2(242, 190)
+
+[node name="GrassTuft96x87" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="45" unique_id=1697684851]
+position = Vector2(468, 192)
+
+[node name="GrassTuft96x88" parent="MapSlot/FarmMap/Background" parent_id_path=PackedInt32Array(1615310020, 1844655515) index="46" unique_id=208704600]
+position = Vector2(401, 195)
+
+[node name="MouseLayer" parent="MapSlot/FarmMap" index="2" unique_id=1473599885]
+position = Vector2(67.999985, 307)
+
+[node name="EggLayer" parent="MapSlot/FarmMap" index="3" unique_id=400317591]
+position = Vector2(237, 128)
+
+[node name="GrassTuft96x64" parent="MapSlot/FarmMap" index="4" unique_id=1203725539]
+position = Vector2(323, 188)
+
+[node name="GrassTuft96x65" parent="MapSlot/FarmMap" index="5" unique_id=1867934990]
+position = Vector2(323, 188)
+
+[node name="DeliveryStatus" type="Control" parent="." unique_id=1175032928]
+editor_description = "Thanh giao trứng tối giản: icon UFO, tiến độ và thời gian."
+z_index = 1800
+anchors_preset = 0
+offset_left = 49.0
+offset_top = 70.0
+offset_right = 616.0
+offset_bottom = 134.0
+mouse_filter = 2
+
+[node name="Backgound" type="Panel" parent="DeliveryStatus" unique_id=1866392005]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 2.0
+offset_right = 567.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qi1wb")
+
+[node name="DeliveryIcon" type="Label" parent="DeliveryStatus" unique_id=1122240526]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.0
+offset_left = 22.0
+offset_top = 15.0
+offset_right = 72.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 26
+text = "🛸"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeliveryProgressBar" type="ProgressBar" parent="DeliveryStatus" unique_id=944216341]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 18.0
+offset_right = 546.0
+offset_bottom = 48.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("progress_background")
+theme_override_styles/fill = SubResource("progress_fill")
+show_percentage = false
+
+[node name="DeliveryStatusLabel" type="Label" parent="DeliveryStatus" unique_id=2133236453]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 9.0
+offset_right = 174.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_colors/font_outline_color = Color(1, 0.9686, 0.8627, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "01:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OpenUpgradeShop" type="Button" parent="." unique_id=1352775393]
+z_index = 2000
+layout_mode = 0
+offset_left = 253.0
+offset_top = 1090.0
+offset_right = 463.0
+offset_bottom = 1162.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("upgrade_button")
+text = "UPGRADE"
+
+[node name="UpgradeShop" type="Panel" parent="." unique_id=1463331999]
+editor_description = "Bảng mua nâng cấp; kéo trực tiếp node này trong màn FarmScreen. App.gd tự ẩn lúc bắt đầu chạy."
+z_index = 2100
+layout_mode = 0
+offset_left = 187.0
+offset_top = 925.0
+offset_right = 517.0
+offset_bottom = 1070.0
+theme_override_styles/panel = SubResource("shop_panel")
+
+[node name="Title" type="Label" parent="UpgradeShop" unique_id=1611651953]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 312.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(1, 0.960784, 0.823529, 1)
+theme_override_colors/font_outline_color = Color(0.435294, 0.207843, 0.086275, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_modal_font")
+theme_override_font_sizes/font_size = 38
+text = "EGG UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeliveryUpgradeLabel" type="Label" parent="UpgradeShop" unique_id=1321491542]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 57.0
+offset_right = 206.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_font_sizes/font_size = 17
+text = "🛸 UFO SPEED
+Cost: 500 Coin"
+
+[node name="BuyDelivery" type="Button" parent="UpgradeShop" unique_id=2013692299]
+z_index = 1
+layout_mode = 0
+offset_left = 215.0
+offset_top = 62.0
+offset_right = 311.0
+offset_bottom = 124.0
+text = "MUA"
+
+[node name="EggUpgradeClose" type="TextureButton" parent="."]
+editor_description = "Image-based Egg Upgrade close control. Drag this node in the 2D editor to adjust its in-game position."
+z_index = 2300
+layout_mode = 0
+offset_left = 590.0
+offset_top = 205.0
+offset_right = 672.0
+offset_bottom = 287.0
+tooltip_text = "Close Egg Upgrade"
+focus_mode = 0
+mouse_filter = 0
+texture_normal = ExtResource("2_close_icon")
+texture_hover = ExtResource("2_close_icon")
+texture_pressed = ExtResource("2_close_icon")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="NotificationTicker" type="Panel" parent="." unique_id=1126861016]
+editor_description = "Thanh thông báo kéo thả trực tiếp trong FarmScreen. App.gd tự ẩn lúc bắt đầu chạy."
+z_index = 2500
+clip_contents = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 146.0
+offset_right = 717.0
+offset_bottom = 194.0
+theme_override_styles/panel = SubResource("ticker_panel")
+
+[node name="ToastLabel" type="Label" parent="NotificationTicker" unique_id=1654230103]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 729.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_colors/font_outline_color = Color(1, 0.9686, 0.8627, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "Scrolling notification"
+vertical_alignment = 1
+
+[node name="OverlayLayer" type="Control" parent="." unique_id=422763312]
+editor_description = "Lớp hiệu ứng runtime cho UFO, trứng rơi và raid. Ẩn trong Editor để không chặn chọn/kéo UI; App.gd bật lại khi chạy game."
+z_index = 2600
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[editable path="MapSlot/FarmMap"]

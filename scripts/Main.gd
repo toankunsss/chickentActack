@@ -165,7 +165,7 @@ func _ready() -> void:
 	_show_screen("home")
 
 	if loaded:
-		_toast("👋 Chào mừng trở lại nông trại!")
+		_toast("👋 Welcome back to the farm!")
 
 # ==================== UI SHELL ====================
 
@@ -193,8 +193,8 @@ func _build_ui() -> void:
 	screens["home"] = _build_home_screen()
 	screens["farm"] = _build_farm_screen()
 	screens["mutations"] = _build_mutations_screen()
-	screens["battle"] = _build_placeholder_screen("⚔️ ĐẤU TRƯỜNG", "Tính năng PK / Đấu Trường đang được phát triển.\nQuay lại sau nhé!")
-	screens["adventure"] = _build_placeholder_screen("🗺️ PHIÊU LƯU", "Bản đồ Phiêu Lưu (theo chương, có boss) đang được phát triển.")
+	screens["battle"] = _build_placeholder_screen("⚔️ ARENA", "The Arena is under development.\nCheck back later!")
+	screens["adventure"] = _build_placeholder_screen("🗺️ ADVENTURE", "The chapter-based Adventure map and bosses are under development.")
 	screens["shop"] = _build_shop_screen()
 
 	for key in screens.keys():
@@ -375,6 +375,7 @@ func _show_screen(name: String) -> void:
 		_refresh_home()
 	elif name == "mutations":
 		_refresh_mutations()
+	_update_hud()
 
 # ==================== HOME SCREEN ====================
 
@@ -407,13 +408,13 @@ func _build_home_screen() -> Control:
 	outer.add_child(bottom_spacer)
 
 	var greet_title := Label.new()
-	greet_title.text = "👋 Chào mừng trở lại!"
+	greet_title.text = "👋 Welcome back!"
 	greet_title.add_theme_font_size_override("font_size", 24)
 	greet_title.add_theme_color_override("font_color", INK_BLACK)
 	col.add_child(greet_title)
 
 	var greet_sub := Label.new()
-	greet_sub.text = "Nông trại của bạn vẫn đang hoạt động. Chọn một khu vực bên dưới để bắt đầu."
+	greet_sub.text = "Your farm is still running. Choose an area below to begin."
 	greet_sub.autowrap_mode = TextServer.AUTOWRAP_WORD
 	greet_sub.add_theme_font_size_override("font_size", 14)
 	greet_sub.add_theme_color_override("font_color", INK_SOFT)
@@ -423,34 +424,34 @@ func _build_home_screen() -> Control:
 	var farm_card := _card_panel(Color(0.89, 0.97, 0.85))
 	col.add_child(farm_card)
 	var farm_col: VBoxContainer = farm_card.get_child(0)
-	farm_col.add_child(_card_header("🌾", "Nông Trại"))
+	farm_col.add_child(_card_header("🌾", "Farm"))
 	home_farm_preview = HBoxContainer.new()
 	home_farm_preview.add_theme_constant_override("separation", 4)
 	home_farm_preview.custom_minimum_size = Vector2(0, 32)
 	farm_col.add_child(home_farm_preview)
-	home_farm_level_label = _stat_line(farm_col, "Cấp nông trại")
-	home_animal_count_label = _stat_line(farm_col, "con vật đang nuôi")
-	home_coin_rate_label = _stat_line(farm_col, "🪙/vòng thu hoạch")
-	farm_col.add_child(_card_button("Vào Nông Trại →", func(): _show_screen("farm")))
+	home_farm_level_label = _stat_line(farm_col, "Farm level")
+	home_animal_count_label = _stat_line(farm_col, "creatures raised")
+	home_coin_rate_label = _stat_line(farm_col, "🪙/harvest cycle")
+	farm_col.add_child(_card_button("Enter Farm →", func(): _show_screen("farm")))
 
 	# ---- Battle card ----
 	var battle_card := _card_panel(Color(0.99, 0.88, 0.88))
 	col.add_child(battle_card)
 	var battle_col: VBoxContainer = battle_card.get_child(0)
-	battle_col.add_child(_card_header("⚔️", "PK / Đấu Trường"))
+	battle_col.add_child(_card_header("⚔️", "Arena"))
 	home_battle_preview = HBoxContainer.new()
 	home_battle_preview.add_theme_constant_override("separation", 4)
 	home_battle_preview.custom_minimum_size = Vector2(0, 32)
 	battle_col.add_child(home_battle_preview)
-	home_team_cap_label = _stat_line(battle_col, "sức chứa đội hình")
-	home_team_power_label = _stat_line(battle_col, "sức mạnh đội hình")
-	battle_col.add_child(_card_button("Vào PK / Đấu Trường →", func(): _show_screen("battle")))
+	home_team_cap_label = _stat_line(battle_col, "team capacity")
+	home_team_power_label = _stat_line(battle_col, "team power")
+	battle_col.add_child(_card_button("Enter Arena →", func(): _show_screen("battle")))
 
 	# ---- Collection card ----
 	var coll_card := _card_panel(Color(0.92, 0.89, 0.98))
 	col.add_child(coll_card)
 	var coll_col: VBoxContainer = coll_card.get_child(0)
-	coll_col.add_child(_card_header("📖", "Sách Sưu Tầm"))
+	coll_col.add_child(_card_header("📖", "Collection"))
 	home_collection_count_label = Label.new()
 	home_collection_count_label.add_theme_font_size_override("font_size", 13)
 	home_collection_count_label.add_theme_color_override("font_color", INK_SOFT)
@@ -459,7 +460,7 @@ func _build_home_screen() -> Control:
 	home_collection_fill.show_percentage = false
 	home_collection_fill.custom_minimum_size = Vector2(0, 10)
 	coll_col.add_child(home_collection_fill)
-	coll_col.add_child(_card_button("Xem toàn bộ bộ sưu tập →", func(): _show_screen("mutations")))
+	coll_col.add_child(_card_button("View Full Collection →", func(): _show_screen("mutations")))
 
 	return outer
 
@@ -522,7 +523,7 @@ func _mini_preview_row(container: HBoxContainer, entries: Array, empty_text: Str
 		container.add_child(_species_icon(a.species_id, Vector2(30, 30)))
 
 func _refresh_home() -> void:
-	_mini_preview_row(home_farm_preview, Game.animals, "— Nông trại đang trống —")
+	_mini_preview_row(home_farm_preview, Game.animals, "— The farm is empty —")
 	home_farm_level_label.text = str(Game.farm_level)
 	home_animal_count_label.text = str(Game.animals.size())
 	home_coin_rate_label.text = "+%d" % Game.passive_income()
@@ -532,12 +533,12 @@ func _refresh_home() -> void:
 		var a = Game.find_animal(id)
 		if not a.is_empty():
 			team.append(a)
-	_mini_preview_row(home_battle_preview, team, "— Chưa xếp đội hình —")
+	_mini_preview_row(home_battle_preview, team, "— No team selected —")
 	home_team_cap_label.text = "%d/%d" % [team.size(), Game.team_capacity]
 	home_team_power_label.text = "0"
 
 	var total := Game.MAX_TIER * Game.SPECIES.size() * 2
-	home_collection_count_label.text = "%d/%d ĐÃ MỞ KHÓA" % [Game.discovered.size(), total]
+	home_collection_count_label.text = "%d/%d UNLOCKED" % [Game.discovered.size(), total]
 	home_collection_fill.max_value = total
 	home_collection_fill.value = Game.discovered.size()
 
@@ -548,7 +549,7 @@ func _build_farm_screen() -> Control:
 	col.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var hint := Label.new()
-	hint.text = "✋ Cùng loài = hợp thể chắc chắn ✨ · Khác loài = lai tạo may rủi 🎲"
+	hint.text = "✋ Same species = guaranteed merge ✨ · Different species = risky fusion 🎲"
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD
 	hint.add_theme_font_size_override("font_size", 12)
 	hint.add_theme_color_override("font_color", INK_SOFT)
@@ -561,7 +562,7 @@ func _build_farm_screen() -> Control:
 	col.add_child(hint_margin)
 
 	debug_label = Label.new()
-	debug_label.text = "debug: (chưa có thao tác nào)"
+	debug_label.text = "debug: (no action yet)"
 	debug_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	debug_label.add_theme_font_size_override("font_size", 11)
 	debug_label.add_theme_color_override("font_color", Color(0.8, 0.1, 0.1))
@@ -611,7 +612,7 @@ func _build_mutations_screen() -> Control:
 	margin.add_child(head_col)
 	col.add_child(margin)
 
-	head_col.add_child(_screen_title_tab("🧬 SỔ SƯU TẦM"))
+	head_col.add_child(_screen_title_tab("🧬 CREATURE COLLECTION"))
 
 	mutations_count_label = Label.new()
 	mutations_count_label.add_theme_font_size_override("font_size", 13)
@@ -652,7 +653,7 @@ func _refresh_mutations() -> void:
 					unlocked += 1
 				mutations_grid.add_child(_collection_cell(sp.id, tier, rare, is_unlocked))
 
-	mutations_count_label.text = "%d/%d ĐÃ MỞ KHÓA" % [unlocked, total]
+	mutations_count_label.text = "%d/%d UNLOCKED" % [unlocked, total]
 
 func _collection_cell(species_id: String, tier: int, rare: bool, unlocked: bool) -> Control:
 	var cell := PanelContainer.new()
@@ -739,10 +740,13 @@ func _build_shop_screen() -> Control:
 	grid_margin.add_child(grid)
 
 	for sp in Game.SPECIES:
-		grid.add_child(_shop_item_card(sp.id, "New " + sp.label))
+		grid.add_child(_shop_item_card(sp.id, "Chick " + sp.label))
+	grid.add_child(_shop_action_card("🍚", "Food", "+15 XP · +60 Coin", "🪙 %d" % Game.FOOD_COST, func(): _buy_food()))
+	grid.add_child(_shop_action_card("💎", "Gem Pouch", "+%d Gems" % Game.GEM_POUCH_AMOUNT, "🪙 %d" % Game.GEM_POUCH_COST, func(): _buy_gem_pouch()))
+	grid.add_child(_shop_action_card("🥚", "Mystery Egg", "T1 70% · T2 30% · Rare 3%", "💎 %d" % Game.MYSTERY_EGG_COST, func(): _hatch_mystery_egg()))
 
 	var note := Label.new()
-	note.text = "Food, Gem Pouch, Mystery Egg sẽ có ở bản cập nhật tiếp theo."
+	note.text = "Each species has its own line: merge matching species to tier up, or fuse different species for a risky result."
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD
 	note.add_theme_font_size_override("font_size", 12)
 	note.add_theme_color_override("font_color", INK_SOFT)
@@ -772,6 +776,31 @@ func _shop_item_card(species_id: String, title: String) -> Control:
 
 	col.add_child(_chunky_button("🪙 %d" % Game.BUY_STARTER_COST, COL_ORANGE, COL_ORANGE_DARK, func(): _buy_starter(species_id), 15))
 
+	return card
+
+func _shop_action_card(emoji: String, title: String, description: String, cost: String, on_press: Callable) -> Control:
+	var card := _card_panel(Color.WHITE)
+	var col: VBoxContainer = card.get_child(0)
+	col.alignment = BoxContainer.ALIGNMENT_CENTER
+	var icon := Label.new()
+	icon.text = emoji
+	icon.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	icon.add_theme_font_size_override("font_size", 42)
+	col.add_child(icon)
+	var heading := Label.new()
+	heading.text = title
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	heading.add_theme_font_size_override("font_size", 15)
+	heading.add_theme_color_override("font_color", INK_BLACK)
+	col.add_child(heading)
+	var detail := Label.new()
+	detail.text = description
+	detail.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	detail.add_theme_font_size_override("font_size", 11)
+	detail.add_theme_color_override("font_color", INK_SOFT)
+	col.add_child(detail)
+	col.add_child(_chunky_button(cost, COL_ORANGE, COL_ORANGE_DARK, on_press, 14))
 	return card
 
 # ==================== MERGE OVERLAY ====================
@@ -826,7 +855,7 @@ func _update_hud() -> void:
 	coin_label.text = "%s" % [int(Game.coins)]
 	gem_label.text = "%s" % [Game.gems]
 	dna_label.text = "%s" % [Game.dna]
-	level_label.text = "Nông trại LV.%d" % Game.farm_level
+	level_label.text = "Farm LV.%d" % Game.farm_level
 	xp_bar.max_value = Game.xp_to_next
 	xp_bar.value = Game.xp
 
@@ -877,10 +906,10 @@ func _sync_critters() -> void:
 
 func _buy_starter(species_id: String) -> void:
 	if Game.coins < Game.BUY_STARTER_COST:
-		_toast("KHÔNG ĐỦ COIN")
+		_toast("NOT ENOUGH COIN")
 		return
 	if Game.animals.size() >= Game.MAX_ANIMALS:
-		_toast("NÔNG TRẠI ĐẦY")
+		_toast("FARM FULL")
 		return
 	Game.coins -= Game.BUY_STARTER_COST
 	var x = GROUND_MIN.x + randf() * (GROUND_MAX.x - GROUND_MIN.x)
@@ -888,7 +917,37 @@ func _buy_starter(species_id: String) -> void:
 	var result = Game.create_animal(species_id, 1, {"x": x, "y": y})
 	_sync_critters()
 	_update_hud()
-	_toast("✨ Xuất hiện bản hiếm!" if result.is_rare else "Đã thêm vào nông trại!")
+	_toast("✨ A rare creature appeared!" if result.is_rare else "Added to the farm!")
+	Game.save_game()
+
+func _buy_food() -> void:
+	var result := Game.buy_food()
+	if not result.ok:
+		_toast("NOT ENOUGH COIN")
+		return
+	_apply_level_ups()
+	_update_hud()
+	_toast("🍚 +%d XP · +%d COIN" % [result.xp, result.coins])
+	Game.save_game()
+
+func _buy_gem_pouch() -> void:
+	var result := Game.buy_gem_pouch()
+	if not result.ok:
+		_toast("NOT ENOUGH COIN")
+		return
+	_update_hud()
+	_toast("💎 +%d GEMS" % result.gems)
+	Game.save_game()
+
+func _hatch_mystery_egg() -> void:
+	var result := Game.hatch_mystery_egg({"x": 50.0, "y": 50.0})
+	if not result.ok:
+		_toast("FARM FULL" if result.reason == "farm_full" else "NOT ENOUGH GEMS")
+		return
+	_sync_critters()
+	_update_hud()
+	var animal: Dictionary = result.animal
+	_toast("✨ Egg hatched: %s (T%d)" % [Game.display_name(animal), animal.tier])
 	Game.save_game()
 
 # ==================== MAIN LOOP ====================
@@ -907,8 +966,8 @@ func _process(delta: float) -> void:
 		critter_views[id].highlighted = (id == highlight_id)
 
 	income_accum += delta
-	if income_accum >= 1.0:
-		income_accum = 0.0
+	if income_accum >= 2.2:
+		income_accum = fmod(income_accum, 2.2)
 		_tick_income()
 
 	save_accum += delta
@@ -919,15 +978,18 @@ func _process(delta: float) -> void:
 func _tick_income() -> void:
 	if Game.animals.is_empty():
 		return
-	var income := Game.passive_income()
+	var income := Game.passive_income_after_damage()
 	Game.coins += income
 	Game.xp += max(1, int(round(income / 20.0)))
-	if Game.xp >= Game.xp_to_next:
+	_apply_level_ups()
+	_update_hud()
+
+func _apply_level_ups() -> void:
+	while Game.xp >= Game.xp_to_next:
 		Game.xp -= Game.xp_to_next
 		Game.farm_level += 1
 		Game.xp_to_next = round(Game.xp_to_next * 1.18)
-		_toast("🎉 Nông trại lên cấp %d!" % Game.farm_level)
-	_update_hud()
+		_toast("🎉 Farm reached level %d!" % Game.farm_level)
 
 func _step_wander(a: Dictionary, delta: float) -> void:
 	if a.walking:
@@ -989,7 +1051,7 @@ func _to_farm_local(screen_pos: Vector2) -> Vector2:
 func _animal_at_px(px: Vector2, exclude_id: String) -> Dictionary:
 	var best := {}
 	var best_dist := INF
-	for a in Game.animals:
+	for a in Game.animals_for_map():
 		if a.id == exclude_id:
 			continue
 		var apx = Vector2(a.x / 100.0 * Game.farm_size.x, a.y / 100.0 * Game.farm_size.y)
@@ -1058,17 +1120,17 @@ func _end_drag(screen_pos: Vector2) -> void:
 	if kind == "merge" or kind == "crossbreed":
 		_run_merge(a.duplicate(), target.duplicate(), kind)
 	elif not target.is_empty() and target.tier != a.tier:
-		_toast("Chỉ ghép được hai con cùng bậc.")
+		_toast("Only creatures of the same tier can be combined.")
 		a.idle_until = Time.get_ticks_msec() + 700
 	elif not target.is_empty():
-		_toast("Con này đã ở bậc tối đa.")
+		_toast("This creature is already at max tier.")
 		a.idle_until = Time.get_ticks_msec() + 700
 	else:
 		a.idle_until = Time.get_ticks_msec() + 700
 
 ## Small real-art icon for a species (head art if present, else body) —
 ## used everywhere a single "species icon" is needed instead of emoji.
-const ICON_PET_TEX := preload("res://assets/sprites/sit_4.png")
+const ICON_PET_TEX := preload("res://assets/prototype/sprites/sit_4.png")
 
 func _species_tint(species_id: String) -> Color:
 	var sp = Game.SPECIES[Game.species_index(species_id)]
@@ -1126,11 +1188,11 @@ func _run_merge(a: Dictionary, b: Dictionary, kind: String) -> void:
 		_fill_slot(merge_slot_result, animal.species_id)
 		merge_slot_result.visible = true
 		if result.is_rare:
-			merge_status.text = "✨ ĐỘT BIẾN MỚI! ✨\nTier %d — %s" % [animal.tier, Game.display_name(animal)]
+			merge_status.text = "✨ NEW MUTATION! ✨\nTier %d — %s" % [animal.tier, Game.display_name(animal)]
 		elif kind == "crossbreed":
-			merge_status.text = "🎉 LAI TẠO THÀNH CÔNG!\nTier %d — %s" % [animal.tier, Game.display_name(animal)]
+			merge_status.text = "🎉 FUSION SUCCESS!\nTier %d — %s" % [animal.tier, Game.display_name(animal)]
 		else:
-			merge_status.text = "ĐÃ HỢP THỂ\nTier %d — %s" % [animal.tier, Game.display_name(animal)]
+			merge_status.text = "MERGED\nTier %d — %s" % [animal.tier, Game.display_name(animal)]
 	else:
 		for c in merge_slot_result.get_children():
 			c.queue_free()
@@ -1141,7 +1203,7 @@ func _run_merge(a: Dictionary, b: Dictionary, kind: String) -> void:
 		poof.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		merge_slot_result.add_child(poof)
 		merge_slot_result.visible = true
-		merge_status.text = "😢 LAI TẠO THẤT BẠI"
+		merge_status.text = "😢 FUSION FAILED"
 
 	await get_tree().create_timer(1.3).timeout
 

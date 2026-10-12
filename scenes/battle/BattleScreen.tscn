@@ -1,0 +1,434 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/BattleScreen.gd" id="1_battle"]
+
+[sub_resource type="StyleBoxFlat" id="header"]
+bg_color = Color(0.24, 0.13, 0.34, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.95, 0.72, 0.25, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(1, 0.9686, 0.8627, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="board"]
+bg_color = Color(0.24, 0.34, 0.28, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="progress_bg"]
+bg_color = Color(0.78, 0.73, 0.66, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="progress_fill"]
+bg_color = Color(0.26, 0.73, 0.91, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="orange_button"]
+bg_color = Color(0.96, 0.65, 0.24, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="pink_button"]
+bg_color = Color(0.91, 0.2, 0.42, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="popup"]
+bg_color = Color(1, 0.9686, 0.8627, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="BattleScreen" type="Control"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_battle")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.9647, 0.7843, 1)
+
+[node name="Header" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 592.0
+offset_bottom = 140.0
+theme_override_styles/panel = SubResource("header")
+
+[node name="Title" type="Label" parent="Header"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 569.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 27
+text = "⚔️ ARENA"
+horizontal_alignment = 1
+
+[node name="Capacity" type="Label" parent="Header"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 54.0
+offset_right = 320.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 0.92, 0.58, 1)
+theme_override_font_sizes/font_size = 17
+text = "TEAM 0 / 15"
+
+[node name="Power" type="Label" parent="Header"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 54.0
+offset_right = 562.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 0.92, 0.58, 1)
+theme_override_font_sizes/font_size = 17
+text = "⚡ POWER: 0"
+horizontal_alignment = 2
+
+[node name="CapacityBar" type="ProgressBar" parent="Header"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 94.0
+offset_right = 564.0
+offset_bottom = 113.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("progress_bg")
+theme_override_styles/fill = SubResource("progress_fill")
+show_percentage = false
+
+[node name="Opponent" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 150.0
+offset_right = 592.0
+offset_bottom = 215.0
+theme_override_styles/panel = SubResource("panel")
+
+[node name="Name" type="Label" parent="Opponent"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 360.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/font_size = 20
+text = "👤 Opponent"
+vertical_alignment = 1
+
+[node name="Power" type="Label" parent="Opponent"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 12.0
+offset_right = 560.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.55, 0.2, 0.66, 1)
+theme_override_font_sizes/font_size = 20
+text = "POWER 50"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TeamBoard" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 225.0
+offset_right = 592.0
+offset_bottom = 684.0
+theme_override_styles/panel = SubResource("board")
+
+[node name="BoardTitle" type="Label" parent="TeamBoard"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 9.0
+offset_right = 566.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "TAP AN EMPTY SLOT TO SELECT A CREATURE"
+horizontal_alignment = 1
+
+[node name="Slots" type="GridContainer" parent="TeamBoard"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 50.0
+offset_right = 572.0
+offset_bottom = 447.0
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 3
+
+[node name="Slot1" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot2" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot3" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot4" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot5" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot6" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot7" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot8" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot9" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot10" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot11" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot12" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot13" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot14" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+[node name="Slot15" type="Button" parent="TeamBoard/Slots"]
+custom_minimum_size = Vector2(182, 72)
+layout_mode = 2
+text = "+"
+
+[node name="Actions" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 696.0
+offset_right = 592.0
+offset_bottom = 767.0
+theme_override_constants/separation = 12
+
+[node name="FindOpponent" type="Button" parent="Actions"]
+custom_minimum_size = Vector2(286, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("orange_button")
+text = "🔍 FIND OPPONENT"
+
+[node name="Ready" type="Button" parent="Actions"]
+custom_minimum_size = Vector2(286, 68)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("pink_button")
+text = "✅ READY"
+
+[node name="Status" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 782.0
+offset_right = 592.0
+offset_bottom = 842.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Build your team"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreaturePicker" type="Control" parent="."]
+z_index = 2000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="CreaturePicker"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.06, 0.08, 0.72)
+
+[node name="Panel" type="Panel" parent="CreaturePicker/Dim"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 115.0
+offset_right = 555.0
+offset_bottom = 875.0
+theme_override_styles/panel = SubResource("popup")
+
+[node name="Title" type="Label" parent="CreaturePicker/Dim/Panel"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 18.0
+offset_right = 488.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/font_size = 23
+text = "SELECT CREATURE"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="CreaturePicker/Dim/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 76.0
+offset_right = 490.0
+offset_bottom = 674.0
+horizontal_scroll_mode = 0
+
+[node name="List" type="GridContainer" parent="CreaturePicker/Dim/Panel/Scroll"]
+layout_mode = 2
+mouse_filter = 1
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Close" type="Button" parent="CreaturePicker/Dim/Panel"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 690.0
+offset_right = 365.0
+offset_bottom = 742.0
+text = "CLOSE"
+
+[node name="ResultPopup" type="Control" parent="."]
+z_index = 2100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="ResultPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.06, 0.08, 0.72)
+
+[node name="Panel" type="Panel" parent="ResultPopup/Dim"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 285.0
+offset_right = 535.0
+offset_bottom = 670.0
+theme_override_styles/panel = SubResource("popup")
+
+[node name="Title" type="Label" parent="ResultPopup/Dim/Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 38.0
+offset_right = 445.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 28
+text = "🏆 VICTORY!"
+horizontal_alignment = 1
+
+[node name="Detail" type="Label" parent="ResultPopup/Dim/Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 120.0
+offset_right = 440.0
+offset_bottom = 245.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Battle result"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="ResultPopup/Dim/Panel"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 280.0
+offset_right = 345.0
+offset_bottom = 342.0
+text = "CONTINUE"

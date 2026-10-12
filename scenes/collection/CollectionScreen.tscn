@@ -1,0 +1,222 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/collection/CollectionScreen.gd" id="1_screen"]
+[ext_resource type="PackedScene" path="res://scenes/collection/CreatureDetailPopup.tscn" id="2_popup"]
+
+[sub_resource type="StyleBoxFlat" id="header_style"]
+bg_color = Color(1, 0.9686, 0.8627, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="filter_style"]
+bg_color = Color(1, 0.93, 0.72, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.54, 0.25, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="progress_bg"]
+bg_color = Color(0.86, 0.82, 0.72, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="progress_fill"]
+bg_color = Color(0.96, 0.54, 0.25, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="option_style"]
+bg_color = Color(1, 0.98, 0.9, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.13, 0.1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="scroll_style"]
+bg_color = Color(1, 0.98, 0.9, 0.72)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="CollectionScreen" type="Control"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_screen")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.9647, 0.7843, 1)
+
+[node name="Header" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 592.0
+offset_bottom = 138.0
+theme_override_styles/panel = SubResource("header_style")
+
+[node name="Title" type="Label" parent="Header"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 568.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/font_size = 27
+text = "🧬 CREATURE COLLECTION"
+horizontal_alignment = 1
+
+[node name="CollectionCount" type="Label" parent="Header"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 52.0
+offset_right = 566.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.35, 0.29, 0.23, 1)
+theme_override_font_sizes/font_size = 17
+text = "0 / 84 DISCOVERED"
+horizontal_alignment = 1
+
+[node name="CollectionProgress" type="ProgressBar" parent="Header"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 92.0
+offset_right = 558.0
+offset_bottom = 111.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("progress_bg")
+theme_override_styles/fill = SubResource("progress_fill")
+show_percentage = false
+
+[node name="FilterPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 147.0
+offset_right = 592.0
+offset_bottom = 273.0
+theme_override_styles/panel = SubResource("filter_style")
+
+[node name="Filters" type="HBoxContainer" parent="FilterPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 574.0
+offset_bottom = 61.0
+theme_override_constants/separation = 5
+
+[node name="All" type="Button" parent="FilterPanel/Filters"]
+custom_minimum_size = Vector2(92, 48)
+layout_mode = 2
+text = "ALL"
+metadata/filter = "all"
+
+[node name="Owned" type="Button" parent="FilterPanel/Filters"]
+custom_minimum_size = Vector2(105, 48)
+layout_mode = 2
+text = "OWNED"
+metadata/filter = "owned"
+
+[node name="Normal" type="Button" parent="FilterPanel/Filters"]
+custom_minimum_size = Vector2(102, 48)
+layout_mode = 2
+text = "NORMAL"
+metadata/filter = "normal"
+
+[node name="Shiny" type="Button" parent="FilterPanel/Filters"]
+custom_minimum_size = Vector2(102, 48)
+layout_mode = 2
+text = "SHINY"
+metadata/filter = "shiny"
+
+[node name="Hybrid" type="Button" parent="FilterPanel/Filters"]
+custom_minimum_size = Vector2(115, 48)
+layout_mode = 2
+text = "HYBRID"
+metadata/filter = "hybrid"
+
+[node name="SpeciesFilter" type="OptionButton" parent="FilterPanel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 70.0
+offset_right = 360.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_styles/normal = SubResource("option_style")
+
+[node name="TierFilter" type="OptionButton" parent="FilterPanel"]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 70.0
+offset_right = 572.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_styles/normal = SubResource("option_style")
+
+[node name="CreatureScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 282.0
+offset_right = -8.0
+offset_bottom = -8.0
+horizontal_scroll_mode = 0
+
+[node name="GridMargin" type="MarginContainer" parent="CreatureScroll"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="CreatureGrid" type="GridContainer" parent="CreatureScroll/GridMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="EmptyLabel" type="Label" parent="CreatureScroll"]
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(568, 180)
+theme_override_colors/font_color = Color(0.35, 0.29, 0.23, 1)
+theme_override_font_sizes/font_size = 20
+text = "No creatures match these filters"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreatureDetailPopup" parent="." instance=ExtResource("2_popup")]

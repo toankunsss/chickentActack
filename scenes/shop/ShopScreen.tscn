@@ -1,0 +1,134 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/ShopScreen.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/shop/shop-awning-v1.png" id="2"]
+
+[node name="MarketShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 4.0
+offset_right = -16.0
+offset_bottom = 164.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Title" type="Label" parent="Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 56.0
+offset_right = -160.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FARM SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Context" type="Label" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_left = 28.0
+offset_top = 168.0
+offset_right = -28.0
+offset_bottom = 256.0
+text = "BUYING FOR: EARTH\n0 / 40 CHICKENS · Change planet in Farm"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Tabs" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_left = 28.0
+offset_top = 264.0
+offset_right = -28.0
+offset_bottom = 352.0
+theme_override_constants/separation = 12
+
+[node name="Eggs" type="Button" parent="Tabs"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EGGS"
+toggle_mode = true
+
+[node name="Chickens" type="Button" parent="Tabs"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CHICKENS"
+toggle_mode = true
+
+[node name="Items" type="Button" parent="Tabs"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ITEMS"
+toggle_mode = true
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 368.0
+offset_right = -22.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+scroll_deadzone = 12
+
+[node name="ShopList" type="GridContainer" parent="Scroll"]
+layout_mode = 2
+mouse_filter = 1
+size_flags_horizontal = 3
+columns = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 16
+
+[node name="Feedback" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -84.0
+offset_right = -120.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Eggs hatch instantly. Check the odds before buying."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+mouse_filter = 2

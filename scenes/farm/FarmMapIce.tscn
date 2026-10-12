@@ -1,0 +1,763 @@
+[gd_scene format=4 uid="uid://h4otd1uroo7x"]
+
+[ext_resource type="Texture2D" uid="uid://cm5n4inxwh0te" path="res://assets/map/themes/ice/ground.png" id="1_h8w33"]
+[ext_resource type="Texture2D" uid="uid://rhwjmnder1y1" path="res://assets/map/optimized/bush_round_256x160.png" id="2_basf8"]
+[ext_resource type="Texture2D" uid="uid://c6b6en3kbrbh3" path="res://assets/map/optimized/fence_horizontal_256x96.png" id="3_8b5hp"]
+[ext_resource type="Texture2D" uid="uid://cm26ow3cay7b8" path="res://assets/map/optimized/fence_vertical_96x256.png" id="4_fy61e"]
+[ext_resource type="Texture2D" uid="uid://c2q7m6rpoe0lo" path="res://assets/map/optimized/grass_tile_128x128.png" id="5_x6bw3"]
+[ext_resource type="Texture2D" uid="uid://cqdwa02rltsag" path="res://assets/map/optimized/tree_round_192x224.png" id="6_x4upj"]
+[ext_resource type="Texture2D" uid="uid://sokuewh3u75g" path="res://assets/map/themes/ice/tuft.png" id="7_qvdnr"]
+[ext_resource type="Texture2D" uid="uid://cdgbb6dok22e1" path="res://assets/map/themes/ice/bush.png" id="8_24uhx"]
+[ext_resource type="Texture2D" uid="uid://dsonl0mminmsp" path="res://assets/map/themes/ice/fence_horizontal.png" id="9_d2k4v"]
+[ext_resource type="Texture2D" uid="uid://b8vu85lqawi4h" path="res://assets/map/themes/ice/tree.png" id="10_63f7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne1ym"]
+bg_color = Color(0.84705883, 0.9529412, 0.9843137, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19215687, 0.37254903, 0.50980395, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5dmnn"]
+texture = ExtResource("1_h8w33")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ufemn"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_5dmnn")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6xyf"]
+texture = ExtResource("2_basf8")
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1vhi"]
+texture = ExtResource("2_basf8")
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ay72d"]
+texture = ExtResource("3_8b5hp")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+2:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p3yg"]
+texture = ExtResource("4_fy61e")
+0:5/0 = 0
+1:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g22wm"]
+texture = ExtResource("5_x6bw3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdcu2"]
+load_path = "res://.godot/imported/grass_tuft_96x64.png-fb3d625bbde7316d485ff4142d8df55a.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n5x2u"]
+texture = SubResource("CompressedTexture2D_kdcu2")
+1:0/0 = 0
+2:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7am7r"]
+texture = ExtResource("6_x4upj")
+5:1/0 = 0
+6:1/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+5:0/0 = 0
+4:0/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88a1u"]
+texture = ExtResource("4_fy61e")
+0:5/0 = 0
+1:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_a6o5w"]
+sources/0 = SubResource("TileSetAtlasSource_d6xyf")
+sources/1 = SubResource("TileSetAtlasSource_t1vhi")
+sources/2 = SubResource("TileSetAtlasSource_ay72d")
+sources/3 = SubResource("TileSetAtlasSource_7p3yg")
+sources/4 = SubResource("TileSetAtlasSource_g22wm")
+sources/5 = SubResource("TileSetAtlasSource_n5x2u")
+sources/6 = SubResource("TileSetAtlasSource_7am7r")
+sources/7 = SubResource("TileSetAtlasSource_88a1u")
+
+[node name="FarmMap" type="Node2D" unique_id=845561312]
+metadata/_edit_vertical_guides_ = [-363.0]
+
+[node name="FarmGround" type="Panel" parent="." unique_id=1991809044]
+z_index = -1
+offset_left = 60.0
+offset_top = 194.0
+offset_right = 660.0
+offset_bottom = 917.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ne1ym")
+
+[node name="Background" type="Node2D" parent="." unique_id=1844655515]
+
+[node name="GroundTileLayer" type="TileMapLayer" parent="Background" unique_id=1615383137]
+rotation = -6.2831855
+scale = Vector2(0.99999994, 0.99999994)
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_ufemn")
+
+[node name="DecorationTileLayer" type="TileMapLayer" parent="Background" unique_id=1832571535]
+tile_set = SubResource("TileSet_a6o5w")
+
+[node name="GrassTuft96x64" type="Sprite2D" parent="Background" unique_id=30317319]
+position = Vector2(309, 590)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x65" type="Sprite2D" parent="Background" unique_id=154401603]
+position = Vector2(407, 635)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x66" type="Sprite2D" parent="Background" unique_id=1906842871]
+position = Vector2(206, 530)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x67" type="Sprite2D" parent="Background" unique_id=1106223274]
+position = Vector2(208, 683)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x68" type="Sprite2D" parent="Background" unique_id=1591523222]
+position = Vector2(448, 470)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x69" type="Sprite2D" parent="Background" unique_id=2146889706]
+position = Vector2(626, 745)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x70" type="Sprite2D" parent="Background" unique_id=597565114]
+position = Vector2(227, 861)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x71" type="Sprite2D" parent="Background" unique_id=876900918]
+position = Vector2(259, 858)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x72" type="Sprite2D" parent="Background" unique_id=2085960582]
+position = Vector2(251, 873)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x73" type="Sprite2D" parent="Background" unique_id=1859383337]
+position = Vector2(186, 518)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x74" type="Sprite2D" parent="Background" unique_id=195260933]
+position = Vector2(208, 491)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x75" type="Sprite2D" parent="Background" unique_id=11248965]
+position = Vector2(474, 458)
+texture = ExtResource("7_qvdnr")
+
+[node name="BushRound256x160" type="Sprite2D" parent="Background" unique_id=780653531]
+position = Vector2(122, 167)
+texture = ExtResource("8_24uhx")
+
+[node name="BushRound256x161" type="Sprite2D" parent="Background" unique_id=1201480692]
+position = Vector2(325, 191)
+texture = ExtResource("8_24uhx")
+
+[node name="BushRound256x162" type="Sprite2D" parent="Background" unique_id=1840886080]
+position = Vector2(423, 184)
+texture = ExtResource("8_24uhx")
+
+[node name="BushRound256x163" type="Sprite2D" parent="Background" unique_id=1836523620]
+position = Vector2(654, 185)
+texture = ExtResource("8_24uhx")
+
+[node name="BushRound256x163" type="Sprite2D" parent="Background/BushRound256x163" unique_id=1058256998]
+position = Vector2(49, 0)
+texture = ExtResource("8_24uhx")
+
+[node name="FenceHorizontal256x102" type="Sprite2D" parent="Background" unique_id=1646621863]
+position = Vector2(-52, 983)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x103" type="Sprite2D" parent="Background" unique_id=747339857]
+position = Vector2(725, 983)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x97" type="Sprite2D" parent="Background" unique_id=1627628927]
+position = Vector2(106, 985)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x99" type="Sprite2D" parent="Background" unique_id=2118582881]
+position = Vector2(266, 985)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x100" type="Sprite2D" parent="Background" unique_id=57274404]
+position = Vector2(424, 985)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x101" type="Sprite2D" parent="Background" unique_id=1899954271]
+position = Vector2(571.8333, 984)
+scale = Vector2(0.67317706, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x104" type="Sprite2D" parent="Background" unique_id=510969304]
+z_index = 1
+z_as_relative = false
+position = Vector2(-25.666656, 233.5)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x105" type="Sprite2D" parent="Background" unique_id=2034804079]
+z_index = 1
+position = Vector2(751.3334, 233.5)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x98" type="Sprite2D" parent="Background" unique_id=889963231]
+z_index = 2
+position = Vector2(132.33334, 235.5)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x106" type="Sprite2D" parent="Background" unique_id=612301645]
+z_index = 1
+position = Vector2(292.33334, 235.5)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x107" type="Sprite2D" parent="Background" unique_id=1429786818]
+z_index = 1
+position = Vector2(450.33334, 235.5)
+scale = Vector2(0.7604167, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="FenceHorizontal256x108" type="Sprite2D" parent="Background" unique_id=1387678673]
+z_index = 1
+position = Vector2(598.1666, 234.5)
+scale = Vector2(0.67317706, 0.7604167)
+texture = ExtResource("9_d2k4v")
+
+[node name="TreeRound192x224" type="Sprite2D" parent="Background" unique_id=71885170]
+position = Vector2(647, 170)
+scale = Vector2(0.8046875, 0.859375)
+texture = ExtResource("10_63f7w")
+
+[node name="TreeRound192x225" type="Sprite2D" parent="Background" unique_id=630334470]
+position = Vector2(535, 158)
+texture = ExtResource("10_63f7w")
+
+[node name="TreeRound192x226" type="Sprite2D" parent="Background" unique_id=1134366914]
+position = Vector2(107, 173)
+texture = ExtResource("10_63f7w")
+
+[node name="TreeRound192x227" type="Sprite2D" parent="Background" unique_id=1275032049]
+position = Vector2(47, 169)
+texture = ExtResource("10_63f7w")
+
+[node name="GrassTuft96x76" type="Sprite2D" parent="Background" unique_id=104820697]
+position = Vector2(230, 173)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x77" type="Sprite2D" parent="Background" unique_id=680225059]
+position = Vector2(242, 199)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x78" type="Sprite2D" parent="Background" unique_id=1479280340]
+position = Vector2(277, 178)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x79" type="Sprite2D" parent="Background" unique_id=1506468822]
+position = Vector2(376, 153)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x80" type="Sprite2D" parent="Background" unique_id=2019948334]
+position = Vector2(211, 149)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x81" type="Sprite2D" parent="Background" unique_id=2139864216]
+position = Vector2(253, 165)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x82" type="Sprite2D" parent="Background" unique_id=1836830705]
+position = Vector2(295, 161)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x83" type="Sprite2D" parent="Background" unique_id=1945109120]
+position = Vector2(277, 165)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x84" type="Sprite2D" parent="Background" unique_id=595489166]
+position = Vector2(244, 175)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x85" type="Sprite2D" parent="Background" unique_id=1971241524]
+position = Vector2(291.5, 144)
+scale = Vector2(0.65625, 1)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x86" type="Sprite2D" parent="Background" unique_id=517162539]
+position = Vector2(244, 151)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x87" type="Sprite2D" parent="Background" unique_id=1697684851]
+position = Vector2(470, 153)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x88" type="Sprite2D" parent="Background" unique_id=208704600]
+position = Vector2(403, 156)
+texture = ExtResource("7_qvdnr")
+
+[node name="MouseLayer" type="Node2D" parent="." unique_id=1473599885]
+z_index = 100
+y_sort_enabled = true
+position = Vector2(65.99999, 249)
+
+[node name="FarmCritterLayer" type="Node2D" parent="MouseLayer" unique_id=840067149]
+scale = Vector2(1, 0.990254)
+
+[node name="EggLayer" type="Node2D" parent="." unique_id=400317591]
+z_index = 220
+position = Vector2(239, 89)
+
+[node name="GrassTuft96x64" type="Sprite2D" parent="." unique_id=1203725539]
+position = Vector2(325, 149)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x65" type="Sprite2D" parent="." unique_id=1867934990]
+position = Vector2(325, 149)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x66" type="Sprite2D" parent="." unique_id=1705032298]
+position = Vector2(705, 924)
+texture = ExtResource("7_qvdnr")
+
+[node name="GrassTuft96x67" type="Sprite2D" parent="." unique_id=548622556]
+position = Vector2(693, 924)
+texture = ExtResource("7_qvdnr")
+
+[node name="Bush" type="Sprite2D" parent="." unique_id=1394361032]
+position = Vector2(58, 975)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush2" type="Sprite2D" parent="." unique_id=745643061]
+position = Vector2(170, 975)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush3" type="Sprite2D" parent="." unique_id=1294640170]
+position = Vector2(261, 970)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush4" type="Sprite2D" parent="." unique_id=44475090]
+position = Vector2(330, 979)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush5" type="Sprite2D" parent="." unique_id=832394642]
+position = Vector2(423, 979)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush6" type="Sprite2D" parent="." unique_id=1266239073]
+position = Vector2(486, 977)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush7" type="Sprite2D" parent="." unique_id=884555068]
+position = Vector2(640, 981)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush8" type="Sprite2D" parent="." unique_id=119088402]
+position = Vector2(705, 974)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush9" type="Sprite2D" parent="." unique_id=841711195]
+position = Vector2(593, 978)
+texture = ExtResource("8_24uhx")
+
+[node name="Bush10" type="Sprite2D" parent="." unique_id=1150147074]
+position = Vector2(593, 978)
+texture = ExtResource("8_24uhx")
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=2094096666]
+position = Vector2(225, 186)
+texture = ExtResource("10_63f7w")
+
+[node name="Tree2" type="Sprite2D" parent="." unique_id=985692108]
+position = Vector2(504, 190)
+texture = ExtResource("10_63f7w")

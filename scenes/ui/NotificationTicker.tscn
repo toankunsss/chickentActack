@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://hs8kc0a0rkur"]
+
+[sub_resource type="StyleBoxFlat" id="ticker_panel"]
+bg_color = Color(1, 0.7, 0.22, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.14, 0.1, 0.08, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="NotificationTicker" type="Panel" unique_id=362229662]
+editor_description = "Thanh thông báo chữ chạy ngang phía trên. Hiển thị trong Editor để dễ thiết kế; App.gd sẽ ẩn khi game bắt đầu."
+z_index = 1200
+clip_contents = true
+offset_top = 112.0
+offset_right = 720.0
+offset_bottom = 158.0
+theme_override_styles/panel = SubResource("ticker_panel")
+
+[node name="ToastLabel" type="Label" parent="." unique_id=757310299]
+editor_description = "Nội dung thông báo. App.gd thay text và chạy tween từ phải sang trái."
+layout_mode = 0
+offset_left = 23.0
+offset_top = -1.0
+offset_right = 743.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 18
+text = "Notification"
+vertical_alignment = 1

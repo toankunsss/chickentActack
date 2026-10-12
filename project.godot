@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Mutation Farm"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/Game.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://assets/icons/coin_icon_128px.png"
+boot_splash/bg_color=Color(0.42, 0.78, 0.95, 1)
+boot_splash/image="res://assets/ui/splash/startup-meadow-ufo-9x20-v2.png"
+config/icon="res://assets/icons/mutation-farm-icon-v1.png"
+boot_splash/minimum_display_time=1400
 
 [autoload]
 
 Game="*res://scripts/Game.gd"
+Audio="*res://scripts/audio/GameAudio.gd"
 
 [display]
 
@@ -26,9 +30,8 @@ window/size/viewport_height=1280
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
-window/handheld/orientation="portrait"
-window/dpi/allow_hidpi=true
+window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [input_devices]
 
@@ -37,3 +40,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

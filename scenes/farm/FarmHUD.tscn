@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://d004pu41lpowm"]
+
+[ext_resource type="PackedScene" uid="uid://bw3efhrbntl8t" path="res://scenes/farm/UpgradeShop.tscn" id="1_upgrade"]
+
+[sub_resource type="StyleBoxFlat" id="white_panel"]
+bg_color = Color(0.917647, 0.87451, 0.760784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.14, 0.1, 0.08, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="status_panel"]
+bg_color = Color(1, 0.9647, 0.8118, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1412, 0.102, 0.0784, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="progress_background"]
+bg_color = Color(0.8471, 0.8196, 0.7412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="progress_fill"]
+bg_color = Color(0.2078, 0.7176, 0.9098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="upgrade_button"]
+bg_color = Color(0.4627, 0.7882, 0.3098, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1373, 0.2078, 0.1373, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="FarmScreen" type="Control" unique_id=191194873]
+editor_description = "Toàn bộ HUD của màn Chăn nuôi. Các node bên trong được thiết kế trực tiếp, App.gd chỉ kết nối dữ liệu và tín hiệu."
+layout_mode = 3
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 112.0
+offset_right = 660.0
+offset_bottom = 1125.0
+mouse_filter = 2
+
+[node name="Hint" type="Panel" parent="." unique_id=39057068]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 638.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("white_panel")
+
+[node name="Label" type="Label" parent="Hint" unique_id=336941935]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 678.0
+offset_bottom = 51.0
+text = "✋ Same species = MERGE · Different species = risky FUSION"
+horizontal_alignment = 1
+
+[node name="DeliveryStatus" type="Panel" parent="." unique_id=121545766]
+editor_description = "Thanh trạng thái sức chứa trứng và thời gian UFO giao quả tiếp theo."
+z_index = 120
+layout_mode = 0
+offset_left = -34.0
+offset_top = 74.0
+offset_right = 266.0
+offset_bottom = 146.0
+theme_override_styles/panel = SubResource("status_panel")
+
+[node name="EggStatusLabel" type="Label" parent="DeliveryStatus" unique_id=1498567937]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 222.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_colors/font_outline_color = Color(1, 0.9686, 0.8627, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "🥚 EGGS: 0 / 5"
+
+[node name="DeliveryStatusLabel" type="Label" parent="DeliveryStatus" unique_id=1585031348]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 34.0
+offset_right = 272.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_colors/font_outline_color = Color(1, 0.9686, 0.8627, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 17
+text = "🛸 NEXT EGG: 01:00"
+
+[node name="DeliveryProgressBar" type="ProgressBar" parent="DeliveryStatus" unique_id=1463230767]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 58.0
+offset_right = 282.0
+offset_bottom = 67.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("progress_background")
+theme_override_styles/fill = SubResource("progress_fill")
+show_percentage = false
+
+[node name="OpenUpgradeShop" type="Button" parent="." unique_id=596667912]
+editor_description = "Nút mở/đóng danh sách mua nâng cấp UFO và Kho trứng."
+z_index = 700
+layout_mode = 0
+offset_left = -38.0
+offset_top = 959.0
+offset_right = 172.0
+offset_bottom = 1031.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("upgrade_button")
+text = "UPGRADE"
+
+[node name="UpgradeShop" parent="." unique_id=1779847239 instance=ExtResource("1_upgrade")]
+editor_description = "Mở scene UpgradeShop.tscn để chỉnh từng dòng và từng nút MUA."
+layout_mode = 0
+offset_left = 350.0
+offset_top = 665.0
+offset_right = 680.0
+offset_bottom = 935.0
+
+[node name="Title" parent="UpgradeShop" index="0"]
+layout_mode = 0
+
+[node name="DeliveryUpgradeLabel" parent="UpgradeShop" index="1"]
+layout_mode = 0
+
+[node name="BuyDelivery" parent="UpgradeShop" index="2"]
+layout_mode = 0
+
+[editable path="UpgradeShop"]

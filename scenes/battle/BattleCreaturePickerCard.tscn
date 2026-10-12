@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/BattleCreaturePickerCard.gd" id="1_card"]
+
+[node name="BattleCreaturePickerCard" type="Button"]
+custom_minimum_size = Vector2(220, 286)
+mouse_default_cursor_shape = 2
+script = ExtResource("1_card")
+
+[node name="CreatureImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 102.0
+offset_bottom = 106.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 16.0
+offset_right = 212.0
+offset_bottom = 72.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.169, 0.129, 0.102, 1)
+theme_override_font_sizes/font_size = 15
+text = "Creature name\nT1"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Power" type="Label" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 77.0
+offset_right = 207.0
+offset_bottom = 106.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.5, 0.22, 0.65, 1)
+theme_override_font_sizes/font_size = 16
+text = "⚡ 50"
+
+[node name="Shiny" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 73.0
+offset_top = 5.0
+offset_right = 106.0
+offset_bottom = 38.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "✨"
+
+[node name="SelectedBadge" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 258.0
+offset_right = 210.0
+offset_bottom = 281.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.55, 0.18, 1)
+theme_override_font_sizes/font_size = 13
+text = "✓ ON TEAM"
+horizontal_alignment = 1
+
+[node name="SkillName" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 114.0
+offset_right = 208.0
+offset_bottom = 163.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "SKILL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SkillDescription" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 166.0
+offset_right = 208.0
+offset_bottom = 256.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.25, 0.17, 0.1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Skill description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

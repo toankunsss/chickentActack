@@ -1,94 +1,85 @@
-# Mutation Farm (bản Godot) — Tài liệu Gameplay
+# Mutation Farm — Luật đang chạy trong Godot
 
-Đây là bản dựng game mobile bằng **Godot 4** (GDScript), xây dựng lại từ
-prototype giao diện HTML gốc (`mutation-farm/index.html`). Tài liệu này mô tả
-những gì đang chạy được, cách chơi, và những phần còn thiếu.
+Cập nhật 03/10/2026. Đây là mô tả implementation hiện tại, không phải xác nhận
+mọi công thức đã được cân bằng. Kế hoạch và hạng mục cần chốt nằm ở `BUSINESS.md`.
 
-## Cách xem thử ngay
+## Cách chạy
 
-- **Cách nhanh nhất (không cần cài gì):** mở các ảnh trong
-  `screenshots/result/frame*.png` — đây là các khung hình chụp trực tiếp từ
-  game đang chạy thật (không phải mock-up).
-- **Chạy thật trên máy:** mở Godot Engine (`Godot_v4.7.2-stable_win64.exe`
-  bạn đã tải), chọn **Import**, trỏ vào thư mục
-  `C:\Users\Admin\New folder\mutation-farm-godot\project.godot`, rồi bấm nút
-  ▶ (Run) ở góc trên phải. Cửa sổ game (khung dọc, tỉ lệ điện thoại) sẽ mở ra
-  và bạn thao tác bằng chuột y như chạm tay trên điện thoại.
+Mở `D:\workspaceGAme\GameGodot\project.godot` trong Godot 4.7.2, chạy scene
+`scenes/Game.tscn`. Giao diện dọc dùng hệ tọa độ cơ sở 720×1280.
 
-## Vòng lặp chơi chính (đã hoạt động)
+## Farm và sinh vật
 
-1. **Mua con vật** — bấm nút 🐭 / 🐷 / 🐤 ở thanh dưới, tốn 500 coin, sinh ra
-   một con Tier 1 ngẫu nhiên vị trí trên nông trại.
-2. **Kéo để ghép (merge)** — kéo một con thả lên một con **cùng loài, cùng
-   bậc** → cả hai biến mất, sinh ra một con bậc cao hơn (Tier+1).
-3. **Kéo để lai tạo (crossbreed)** — kéo một con thả lên một con **khác
-   loài nhưng cùng bậc** → có tỉ lệ thành công (xem bảng bên dưới), thất bại
-   thì mất cả hai con, thành công thì ra một con bậc cao hơn thuộc 1 trong 2
-   loài (50/50).
-4. **Đột biến hiếm (Rare Mutation)** — mỗi lần một con được tạo ra (mua mới
-   hoặc từ ghép/lai) có 1% cơ hội là bản **hiếm**, đổi tên và có màu sắc lấp
-   lánh riêng theo bậc.
-5. **Thu nhập thụ động** — mỗi giây, nông trại tự cộng coin dựa trên tổng
-   (bậc × 2 + 1 nếu hiếm) của mọi con vật đang nuôi, và cộng thêm XP để lên
-   cấp nông trại.
-6. **Sổ Sưu Tầm** — bấm icon rương ở góc trên phải để xem đã khám phá được
-   bao nhiêu trong tổng số 36 dạng (3 loài × 6 bậc × thường/hiếm).
-7. **Lưu game tự động** — game tự lưu mỗi 8 giây và khi thoát, không mất
-   tiến trình.
+- 100 nhân vật thường = 10 dòng gà × Tier 1–10, thêm biến thể shiny.
+- Earth, Mars, Volcano, Ice, Saturn: mỗi map có hai dòng đủ Tier 1–10.
+- Chỉ sinh vật và trứng thuộc map hiện tại được hiển thị/chọn/mở.
+- Merge: hai con khác ID, cùng dòng và cùng tier, dưới Tier 10 → Tier +1.
+- Fusion: hai dòng khác nhau cùng tier, dưới Tier 10. Tỉ lệ theo FarmConfig:
+  `max(20%, 70% - (tier - 1) × 8%)`.
+- Fusion thất bại thường mất một con; critical failure (10% trong nhánh thất bại)
+  mất cả hai. Không thể dùng cùng một con để merge với chính nó.
+- Fusion chỉ tạo dòng thuộc map hiện tại. Recipe cũ dẫn sang map khác dùng
+  50/50 dòng bố/mẹ và tăng một tier khi thành công; giữ nguyên gà trong save cũ.
+- Kết quả Fusion được lưu trước animation; thành công hiển thị gà mới, thất bại
+  hiển thị con sống sót hoặc báo mất cả hai. Continue không thực hiện thêm lượt.
+- Tier cao có sprite lớn hơn; collection có filter, ảnh nhân vật thật và detail.
 
-## Loài & bậc tiến hóa (giống hệt prototype gốc)
+## Trứng và UFO giao hàng
 
-| Bậc | Tên (thường) | Tên bản hiếm |
-|---|---|---|
-| 1 | Chuột / Heo Con / Gà Con | Shiny ___ |
-| 2 | Fat ___ | Golden ___ |
-| 3 | Big ___ | Crystal ___ |
-| 4 | Three-Eyed ___ | Neon ___ |
-| 5 | Alien ___ | Cosmic ___ |
-| 6 | Nuclear ___ | Radioactive ___ (bậc tối đa) |
+- Mỗi map có tối đa 5 trứng chưa mở và sức chứa sinh vật tối đa 40.
+- UFO level, delivery timer và egg upgrade level được lưu riêng theo map.
+- Khoảng giao từ 60 giây đến 12 giây qua 11 cấp dữ liệu; giá nâng UFO là
+  `round(500 × 1.65^level)` (level nội bộ bắt đầu từ 0).
+- UFO chỉ thả Egg Lv.1–5; map mới chỉ thả Egg Lv.1. Nâng chất lượng làm đổi
+  phân bố các loại trứng, không nâng trực tiếp một quả trứng cụ thể.
+- Egg quality Lv.0–10; ở MAX, tỷ lệ Egg Lv.1–5 là 27/25/25/18/5%.
+- Egg Shop bán Lv.1–10. Trứng nở theo bảng `EggDropRateConfig.gd`, không mặc
+  định ra sinh vật cùng cấp. Egg Lv.1 luôn ra Tier 1; Egg Lv.10 có 10% ra Tier 10.
+- Popup DROP RATE hiển thị đủ Tier 1–10, kể cả mức 0%; chỉ tạo gà thuộc map
+  đang chơi. Mở/đóng popup không mua trứng và chặn thao tác vào màn hình phía sau.
+- Nâng chất lượng có thể thất bại từ bước Lv.3 → Lv.4; xác nhận hiển thị trước
+  khi trừ Gold. Thất bại không tăng cấp và không hoàn Gold.
+- Bảng giá/tỷ lệ nguồn: `scripts/config/EggUpgradeConfig.gd`,
+  `EggDropRateConfig.gd`, `EggShopConfig.gd`; không sao chép số cũ từ BA prototype.
 
-3 loài khởi điểm: **Mouse (🐭)**, **Piglet (🐷)**, **Chick (🐤)** — cùng một
-"khuôn" tiến hóa (6 bậc), chỉ khác tông màu.
+## Thu nhập, tài nguyên và shop
 
-## Tỉ lệ lai tạo khác loài theo bậc
+- Mỗi 2,2 giây cộng thu nhập từ các gà đang sở hữu: `tier × 2`, nhân 1,5 nếu shiny.
+- Wallet và collection dùng chung giữa các hành tinh; chỉ phần tiến trình
+  Egg/UFO và roster/egg hiển thị tách theo map.
+- Khi farm damaged, income còn 40% trong thời hạn hiện tại 600 giây.
+- Food: -100 Coins, +15 XP, +60 Coins. Gem Pouch: -800 Coins, +15 Gems.
+- Mystery Egg: -50 Gems; Tier 1 70% / Tier 2 30%, shiny 3%, dòng thuộc map hiện tại.
+- Shop từ chối thiếu tiền hoặc farm đầy; BA cân bằng Economy vẫn chưa nghiệm thu.
+- Shop có ba tab Eggs / Chickens / Items. Tab Chickens hiển thị đúng hai dòng
+  Tier 1 của map hiện tại; mua đúng gà đang xem. Farm đầy khóa mua gà/trứng,
+  không khóa Food/Gem Pouch. Giá, phần thưởng và tỉ lệ nở giữ nguyên.
+- Kết quả mua hiển thị ngay trong Shop; đổi tab không trừ Gold. Nút DROP RATE
+  vẫn mở được khi không đủ Gold hoặc farm đã đầy.
 
-| Bậc đang lai | Tỉ lệ thành công |
-|---|---|
-| 1 | 70% |
-| 2 | 55% |
-| 3 | 40% |
-| 4 | 25% |
-| 5 | 12% |
+## UFO địch và Battle
 
-Ghép cùng loài (merge) luôn **100% thành công** — không có rủi ro.
+- Raid hiện có 1.000 HP, chạm bắn gây 10 damage, thời hạn bắt cóc 15 giây.
+- Thắng nhận loot theo `LootManager.gd`; thất bại có thể bắt cóc gà.
+- Raid chặn chuyển màn/map và hiển thị pháo che bottom navigation.
+- Battle offline: chọn tối đa 15 gà, AI có đội riêng xem trước, Easy/Normal/Hard.
+- Trận 30 giây với 2 giây đếm ngược; grid 3 cột, 7–11 hàng tùy số lượng quân.
+- Mỗi mẫu nhân vật trong 100 con có skill gắn ID cố định: 11 kiểu tấn công và
+  10 hiệu ứng phụ, tự dùng theo tầm đánh/hồi chiêu; xem mô tả khi chọn đội.
+- HP, shield và trạng thái trong trận là bản sao, không làm mất gà ở Farm.
+- Tốc độ x1/x2/x4, chặn tab trong trận; LEAVE cần xác nhận bằng lần chạm thứ hai.
+- Thắng nhận Gold theo số ô chiếm và 20 XP; thua/hòa/bỏ trận không thưởng.
+  Kết quả chỉ trả thưởng một lần, có REMATCH và thống kê damage/skill/KOs.
+- Chapter/boss theo chapter bị loại khỏi phạm vi theo yêu cầu mới. UFO raid Farm giữ nguyên.
+- Bluetooth giữa hai điện thoại là giai đoạn sau: hiện chưa có discovery, pairing,
+  transport hoặc đồng bộ hai máy. Chi tiết offline và ranh giới ở `BATTLE.md`.
 
-## Đã xây xong
+## Lưu tiến trình và kiểm thử
 
-- Nông trại + kéo-thả ghép/lai tạo, đúng công thức gốc.
-- 3 currency: Coin, Gem, DNA (Gem/DNA hiện chưa có nơi tiêu — xem phần dưới).
-- Thu nhập thụ động + lên cấp nông trại (XP).
-- Sổ sưu tầm 36 ô, mở khóa dần.
-- Lưu/tải game.
-- Giao diện điện thoại dọc (720×1280), theo đúng tông màu kem/pastel của
-  bản HTML gốc.
-
-## Chưa làm (so với prototype HTML đầy đủ)
-
-Prototype gốc còn có **PK/Đấu Trường** (`battleView.js`), **Adventure/bản đồ
-theo chương với boss** (`adventureView.js`), và **cửa hàng đầy đủ**
-(mua Food, Gem Pouch, Mystery Egg — `shopView.js`). Bản Godot này mới tập
-trung làm chắc **vòng lặp Nông Trại** trước — đây là phần lõi/vui nhất của
-game, nên tôi ưu tiên làm nó chỉn chu trước khi mở rộng sang các màn hình
-khác. Nói cho tôi biết bạn muốn tôi làm tiếp phần nào.
-
-Ngoài ra: **xuất file cài đặt cho điện thoại (APK Android)** chưa làm — cần
-tải thêm Godot Export Templates (~1GB) và cấu hình Android SDK/JDK, tôi sẽ
-xin phép bạn trước khi tải vì khá nặng.
-
-## Cấu trúc code (cho tham khảo)
-
-- `scripts/Game.gd` — toàn bộ dữ liệu & luật chơi (loài, bậc, tỉ lệ, merge,
-  lai tạo, lưu/tải) — không dính UI, dễ test/mở rộng.
-- `scripts/Main.gd` — dựng giao diện bằng code, vòng lặp game, xử lý kéo-thả.
-- `scripts/Critter.gd` — hiển thị một con vật (đổi khung hình, màu, kích cỡ).
-- `assets/` — sprite và icon lấy trực tiếp từ prototype gốc.
+- Save schema 3; planet progression schema 2; hỗ trợ migration từ Godot save v2.
+- Autosave 5 giây, pause/close; ghi file tạm, backup `.bak`, phục hồi snapshot hợp lệ.
+- Nếu không đọc được bất kỳ save nào, giữ nguyên file và khóa ghi tự động.
+- Đã kiểm tra tự động save round-trip cho 5 map, migration, save bị cắt/sai schema,
+  và chọn/mở trứng đúng map. Chi tiết chứng cứ: `qa/save-map-regression.json`.
+- Android touch, app kill/resume và performance trên thiết bị thật còn phải kiểm tra.
+- Lệnh chạy test: `tools/run_regression.ps1 -Godot <path-to-console.exe> -Visual`.

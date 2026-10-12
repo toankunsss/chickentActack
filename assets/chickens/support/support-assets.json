@@ -1,0 +1,135 @@
+{
+  "style": "colored minimalist chicken doodle",
+  "palette": [
+    "#F6C945",
+    "#EF6A5B",
+    "#5DB7DE",
+    "#5AC7A7",
+    "#8C69C9",
+    "#FFF2C2",
+    "#211B18"
+  ],
+  "eggs": [
+    {
+      "tier": 1,
+      "name": "Basic Egg",
+      "file": "eggs/tier-01.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 2,
+      "name": "Farm Egg",
+      "file": "eggs/tier-02.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 3,
+      "name": "Mutation Egg",
+      "file": "eggs/tier-03.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 4,
+      "name": "Warrior Egg",
+      "file": "eggs/tier-04.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 5,
+      "name": "Elemental Egg",
+      "file": "eggs/tier-05.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 6,
+      "name": "Royal Magic Egg",
+      "file": "eggs/tier-06.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 7,
+      "name": "Technology Egg",
+      "file": "eggs/tier-07.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 8,
+      "name": "Space Egg",
+      "file": "eggs/tier-08.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 9,
+      "name": "Mythical Egg",
+      "file": "eggs/tier-09.png",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "tier": 10,
+      "name": "Ultimate Egg",
+      "file": "eggs/tier-10.png",
+      "size": [
+        384,
+        384
+      ]
+    }
+  ],
+  "delivery_ufo": {
+    "sheet": "delivery-ufo/sheet.png",
+    "frames_dir": "delivery-ufo/frames",
+    "frames": 6,
+    "fps": 8,
+    "frame_size": [
+      512,
+      512
+    ],
+    "columns": 6,
+    "rows": 1,
+    "contains_egg": false,
+    "egg_layer": "eggs/tier-{tier:02d}.png",
+    "drop_frames": [
+      3,
+      4,
+      5
+    ]
+  },
+  "boss_ufo": {
+    "sheet": "boss-ufo/sheet.png",
+    "frames_dir": "boss-ufo/frames",
+    "frames": 6,
+    "fps": 10,
+    "frame_size": [
+      512,
+      512
+    ],
+    "columns": 6,
+    "rows": 1
+  }
+}

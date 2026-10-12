@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bw3efhrbntl8t"]
+
+[sub_resource type="StyleBoxFlat" id="shop_panel"]
+bg_color = Color(1, 0.9686, 0.8627, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.1529, 0.1176, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="UpgradeShop" type="Panel" unique_id=1451518857]
+editor_description = "Bảng danh sách mua nâng cấp Farm. Hiển thị trong Editor để dễ chỉnh; App.gd sẽ ẩn bảng khi bắt đầu chạy game."
+z_index = 750
+offset_right = 330.0
+offset_bottom = 145.0
+theme_override_styles/panel = SubResource("shop_panel")
+
+[node name="Title" type="Label" parent="." unique_id=570505696]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 312.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_font_sizes/font_size = 21
+text = "UPGRADE SHOP"
+horizontal_alignment = 1
+
+[node name="DeliveryUpgradeLabel" type="Label" parent="." unique_id=318079061]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 57.0
+offset_right = 206.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(0.1412, 0.102, 0.0784, 1)
+theme_override_font_sizes/font_size = 17
+text = "🛸 UFO SPEED
+Cost: 500 Coin"
+
+[node name="BuyDelivery" type="Button" parent="." unique_id=1810880654]
+editor_description = "Nút mua nâng cấp tốc độ UFO giao trứng."
+layout_mode = 0
+offset_left = 215.0
+offset_top = 62.0
+offset_right = 311.0
+offset_bottom = 124.0
+text = "MUA"

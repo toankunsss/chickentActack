@@ -21,3 +21,29 @@ data_*/
 # OS
 .DS_Store
 Thumbs.db
+
+# Manual Gemini Pro downloads; retain locally as the high-resolution source.
+/assets/inbox/
+
+# Android build outputs and local signing sidecars
+*.apk
+*.aab
+*.idsig
+
+# Local visual QA captures generated during emulator checks
+/collection-filter-qa.png
+/collection-filter-qa.png.import
+/collection-filter-popup-qa.png
+/collection-filter-popup-qa.png.import
+/qa-emulator-stability.png
+/qa-emulator-stability.png.import
+
+# Scratch output; production source lives in assets/, scenes/ and scripts/
+/tmp/
+__pycache__/
+*.pyc
+
+# Imported Unity demo content is not referenced by the Godot game. Keep only
+# the licensed Baloo font files used by the production UI.
+/assets/Hyper_Casual_UI/Scenes/
+/assets/Hyper_Casual_UI/Sprites/

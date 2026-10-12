@@ -1,24 +1,16 @@
 extends Node2D
-## Pure view for one animal in Game.animals. Lightweight by design: one
-## shared Sprite2D swapping between the same 3 doodle frames (idle-a /
-## idle-b / walk) for every pet, tinted per species by hue — instead of a
-## heavier multi-part composite. Glows while the pet is actively being
-## touched/dragged (Main.gd sets Game animal `dragging = true` the instant
-## a touch/click hits it), both as a nice touch and as an at-a-glance signal
-## that input reached the pet at all.
+## Farm view for one animal. Each lineage/tier resolves to one of the 100
+## generated chickens and plays its own transparent bounce sheet.
 
-const TEX_IDLE_A := preload("res://assets/sprites/sit_1.png")
-const TEX_IDLE_B := preload("res://assets/sprites/sit_4.png")
-const TEX_WALK := preload("res://assets/sprites/tall_1.png")
-
-const BASE_SIZE := 130.0  # must match Main.gd's BASE_SIZE (hit-test radius = visual size)
-const BLINK_MS := 550
+const BASE_SIZE := 80.0  # scene-first Farm board: keeps several chickens readable without covering the ground
 const GLOW_COLOR := Color(1.4, 1.25, 0.6)  # additive-ish warm highlight while touched
 
 var animal_id: String = ""
 var highlighted: bool = false
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var name_tag: Label = $NameTag
+@onready var rare_badge: Label = $RareBadge
 
 func setup(id: String) -> void:
 	animal_id = id
@@ -26,17 +18,26 @@ func setup(id: String) -> void:
 	if a.is_empty():
 		return
 	_apply_tint(a)
+	_update_identity(a)
+	queue_redraw()
+
+func _draw() -> void:
+	var a = Game.find_animal(animal_id)
+	if a.is_empty():
+		return
+	if a.rarity == "rare" or highlighted or a.get("dragging", false):
+		var hue: float = Game.RARE_HUE_BY_TIER.get(a.tier, 45.0) / 360.0
+		var glow := Color.from_hsv(hue, 0.55, 1.0, 0.28)
+		draw_circle(Vector2.ZERO, 47.0, glow)
+		draw_arc(Vector2.ZERO, 47.0, 0.0, TAU, 48, glow.lightened(0.25), 3.0)
+
+func _update_identity(a: Dictionary) -> void:
+	name_tag.text = "T%d · #%03d" % [a.tier, Game.creature_asset_id(a)]
+	name_tag.tooltip_text = Game.display_name(a)
+	rare_badge.visible = a.rarity == "rare"
 
 func _apply_tint(a: Dictionary) -> void:
-	var sp = Game.SPECIES[Game.species_index(a.species_id)]
-	var hue: float = sp.hue
-	if a.rarity == "rare":
-		var rh: float = Game.RARE_HUE_BY_TIER.get(a.tier, 0.0)
-		sprite.modulate = Color.from_hsv(rh / 360.0, 0.7, 1.0)
-	elif hue >= 0.0:
-		sprite.modulate = Color.from_hsv(hue / 360.0, 0.55, 1.0)
-	else:
-		sprite.modulate = Color.WHITE
+	sprite.modulate = Game.creature_color(a)
 
 func _process(_delta: float) -> void:
 	var a = Game.find_animal(animal_id)
@@ -45,11 +46,7 @@ func _process(_delta: float) -> void:
 
 	position = Vector2(a.x / 100.0 * Game.farm_size.x, a.y / 100.0 * Game.farm_size.y)
 
-	var blink_on := (Time.get_ticks_msec() % (BLINK_MS * 2)) >= BLINK_MS
-	if a.walking:
-		sprite.texture = TEX_WALK
-	else:
-		sprite.texture = TEX_IDLE_B if blink_on else TEX_IDLE_A
+	sprite.texture = Game.creature_animation_texture(a, "bounce", Time.get_ticks_msec())
 
 	sprite.flip_h = a.facing < 0
 
@@ -64,7 +61,9 @@ func _process(_delta: float) -> void:
 	sprite.scale = Vector2(s, s)
 
 	_apply_tint(a)
+	_update_identity(a)
 	if a.get("dragging", false):
 		sprite.modulate = sprite.modulate.lerp(GLOW_COLOR, 0.65)
+	queue_redraw()
 
 	z_index = int(a.y)
